@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "811909324483",
+    "project_id": "fixmyhood-74c4e",
+    "storage_bucket": "fixmyhood-74c4e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811909324483:android:b9cd86f3ca2ebdc096cc76",
+        "android_client_info": {
+          "package_name": "com.alenga.fixmyhood"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATJXLEGcmj7DIH0pzWD7rQRR2OsTx5vEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
