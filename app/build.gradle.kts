@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.kapt")
     id("com.google.gms.google-services")
+
 }
 
 android {
@@ -46,13 +49,32 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+//    ROOM LIBRARY: LOCAL DATABASE MANAGEMENT
+    implementation("androidx.room:room-runtime:2.7.1")
+    implementation("androidx.room:room-ktx:2.7.1")
+
+
+    kapt("androidx.room:room-compiler:2.7.1")
+
+    //NAVIGATION
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    //hilt
+    //hilt core
+    implementation("com.google.dagger:hilt-android:2.56.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.56.1")
+//    kapt("com.google.dagger.hilt-android-compiler:2.48")
+    //for viewModel support
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    //IF YPU USE rOMM OR OTHER JETPACK COMPONENTS
+//    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
+    implementation("com.google.firebase:firebase-analytics")
+//    firebase authentication
+    implementation("com.google.firebase:firebase-auth-ktx")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation("androidx.navigation:navigation-compose:2.8.9")
-    implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
-    implementation("com.google.firebase:firebase-analytics")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

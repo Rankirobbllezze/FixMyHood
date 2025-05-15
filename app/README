@@ -1,0 +1,146 @@
+@Composable
+        fun ForgotPasswordScreen(navController: NavController) {
+            val username = remember { mutableStateOf("") }
+            val password = remember { mutableStateOf("") }
+            val passwordVisible = remember { mutableStateOf(false) }
+
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Card(
+                    modifier = Modifier.fillMaxWidth().padding(24.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 8.dp
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    )
+                    {
+                        Row {
+                            Text(
+                                "           FixMyHood                 ",
+                                fontFamily = FontFamily.Cursive,
+                                fontSize = 30.sp
+                            )
+
+
+                        }
+//                logo
+                        Image(
+                            painter = painterResource(R.drawable.environment),
+                            contentDescription = "App Logo",
+                            modifier = Modifier.size(120.dp),
+                            contentScale = ContentScale.Fit
+                        )
+//                space
+                        Spacer(modifier = Modifier.height(32.dp))
+//                username text field
+                        OutlinedTextField(
+                            value = username.value,
+                            onValueChange = { username.value = it },
+                            label = { Text("Username or Email") },
+                            modifier = Modifier.fillMaxWidth(),
+                            singleLine = true,
+                            colors = TextFieldDefaults.colors(
+                                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                unfocusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                focusedContainerColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Gray
+                            )
+                        )
+//                SPACER
+                        Spacer(modifier = Modifier.height(16.dp))
+//                password
+                        OutlinedTextField(
+                            value = password.value,
+                            onValueChange = { password.value = it },
+                            label = { Text("Reset Password") },
+                            modifier = Modifier.fillMaxWidth(),
+                            singleLine = true,
+                            colors = TextFieldDefaults.colors(
+                                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                                unfocusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                focusedContainerColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Gray
+                            ),
+                            visualTransformation = if (passwordVisible.value) VisualTransformation.None
+                            else PasswordVisualTransformation(),
+                            trailingIcon = {
+                                IconButton(onClick = {
+                                    passwordVisible.value = !passwordVisible.value
+                                }) {
+                                    Icon(
+                                        imageVector = if (passwordVisible.value)
+                                            Icons.Filled.ThumbUp else
+                                            Icons.Filled.AccountBox,
+                                        contentDescription = ""
+                                    )
+
+
+                                }
+                            }
+
+                        )
+
+                        Spacer(modifier = Modifier.height(24.dp))
+//                login button
+                        Button(
+                            onClick = {/*handle login*/ },
+                            modifier = Modifier.fillMaxWidth().height(48.dp),
+                            shape = RoundedCornerShape(8.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.primary,
+                                contentColor = Color.White
+                            )
+                        ) {
+                            Text(text = "Log In", fontSize = 16.sp)
+                        }
+//                linking elements to launch up the signup composable
+
+
+                    }
+                }
+            }
+
+        }
+
+
+        //    setting a preview function for my login screen composable
+        @Preview(showBackground = true)
+        @Composable
+        fun LoginScreenPreview() {
+            MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    LoginScreen(rememberNavController())
+                }
+            }
+        }
+
+
+        @Preview(showBackground = true)
+        @Composable
+        fun SignUpScreenPreview() {
+            MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    SignUpScreen(rememberNavController())
+                }
+            }
+
+        }
+
+        @Preview(showBackground = true)
+        @Composable
+        fun ForgotPasswordScreenPreview() {
+            MaterialTheme {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    ForgotPasswordScreen(rememberNavController())
+                }
+            }
+        }
+    }
+
+
