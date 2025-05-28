@@ -1,4 +1,4 @@
-package com.example.robbllezze.presentation.components
+package com.alenga.fixmyhood.presentation.components
 
 import android.content.Context
 import androidx.compose.foundation.layout.*
