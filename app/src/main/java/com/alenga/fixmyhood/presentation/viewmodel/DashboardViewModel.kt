@@ -1,4 +1,4 @@
-package com.alenga.fixmyhood.presentation.screens.dashboard
+package com.alenga.fixmyhood.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,4 +23,3 @@ class DashboardViewModel : ViewModel() {
         _dailyTip.value = tips.random()
     }
 }
-

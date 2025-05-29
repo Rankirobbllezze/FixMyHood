@@ -6,9 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.alenga.fixmyhood.presentation.components.LoginScreen
 import com.alenga.fixmyhood.presentation.components.SignUpScreen
-//import com.example.robbllezze.presentation.components.LoginScreen
-import com.alenga.fixmyhood.presentation.components.SignUpScreen
-import com.alenga.fixmyhood.presentation.screens.dashboard.DashboardScreen
+import com.alenga.fixmyhood.presentation.screens.ChallengeScreen
+import com.alenga.fixmyhood.presentation.screens.DashboardScreen
+import com.alenga.fixmyhood.presentation.screens.EducationScreen
+import com.alenga.fixmyhood.presentation.screens.ProfileScreen
 
 //import com.example.robbllezze.presentation.screens.dashboard.DashboardScreen
 
@@ -30,6 +31,22 @@ fun TodoNavGraph(navController: NavHostController){
             )
 
         }
+        composable("challenges") {
+            ChallengeScreen(navController = navController)
+        }
+        composable("education") {
+            EducationScreen()
+        }
+        composable("profile") {
+            ProfileScreen(onLogout = {
+                navController.navigate("login") {
+                    popUpTo("home") { inclusive = true }
+                }
+            })
+        }
+
+
+
 
         // here will define the addtoDo composable
 

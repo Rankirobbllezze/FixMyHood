@@ -1,4 +1,4 @@
-package com.alenga.fixmyhood.presentation.screens.dashboard
+package com.alenga.fixmyhood.presentation.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.alenga.fixmyhood.presentation.viewmodel.DashboardViewModel
 
 @Composable
 fun DashboardScreen(
