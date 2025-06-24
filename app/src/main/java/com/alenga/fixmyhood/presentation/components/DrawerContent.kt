@@ -5,27 +5,26 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Book
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
-// this is the side menu content items and navigation elements
 @Composable
 fun DrawerContent(
     onNavigateToHome: () -> Unit,
     onLogout: () -> Unit,
-    onNavigateToApi: () -> Unit
+//    onNavigateToApi: () -> Unit
 ){
     Surface(
         modifier = Modifier.width(280.dp).fillMaxHeight()
@@ -52,12 +51,7 @@ fun DrawerContent(
                 modifier = Modifier.clickable { onNavigateToHome() }
                     .padding(vertical = 12.dp)
             )
-            Text(
-                text = "Api Screen",
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.clickable { onNavigateToApi() }
-                    .padding(vertical = 12.dp)
-            )
+
             Text(
                 text = "Logout",
                 color = MaterialTheme.colorScheme.onSurface,
@@ -65,18 +59,18 @@ fun DrawerContent(
                     .padding(vertical = 12.dp)
             )
 
-
         }
     }
-
 }
 
-
-
-
-
-
-
-
-
-
+@Composable
+fun DrawerItem(label: String, onClick: () -> Unit) {
+    Text(
+        text = label,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(vertical = 12.dp),
+        style = MaterialTheme.typography.bodyLarge
+    )
+}

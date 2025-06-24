@@ -68,16 +68,26 @@ dependencies {
     //for viewModel support
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     //IF YPU USE rOMM OR OTHER JETPACK COMPONENTS
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
+//    kapt("androidx.hilt:hilt-compiler:1.2.0")
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
     implementation("com.google.firebase:firebase-analytics")
 //    firebase authentication
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    implementation("androidx.compose.material3:material3:1.2.0")
-    implementation("androidx.compose.material:material-icons-extended")
+//    FIREBASE DATABASE
+    implementation("com.google.firebase:firebase-database-ktx")
+    //firebase storage
+    implementation("com.google.firebase:firebase-storage-ktx")
+
+    implementation("com.google.firebase:firebase-firestore-ktx:24.10.3")
+
+// coil : image loader
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+    //retrofit for network communication
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

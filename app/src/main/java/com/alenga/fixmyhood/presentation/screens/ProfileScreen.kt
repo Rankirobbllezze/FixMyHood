@@ -32,8 +32,12 @@ fun ProfileScreen(
         Text("👤 Profile", style = MaterialTheme.typography.headlineSmall)
 
         // Placeholder user info
-        Text("Name: Eco Warrior")
-        Text("Email: eco@example.com")
+        Text("Name: FixMyHood Community")
+        Text("Email: eco@fixmyhood.co.ke")
+        Text("Phone Number: +23412348730")
+        Text("Instagram: Fix_My_Hood")
+        Text("Facebook: Fix_myHood")
+
 
         Divider()
 

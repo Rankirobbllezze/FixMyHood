@@ -6,6 +6,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -15,16 +16,17 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(appContext: Context): AppDatabase {
+    fun provideDatabase(
+        @ApplicationContext appContext: Context
+    ): AppDatabase {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "eco_challenges_db"
+            "challenge_db"
         ).build()
     }
 
     @Provides
-    fun provideChallengeDao(db: AppDatabase): ChallengeDao {
-        return db.challengeDao()
-    }
+    fun provideChallengeDao(db: AppDatabase): ChallengeDao = db.challengeDao()
 }
+

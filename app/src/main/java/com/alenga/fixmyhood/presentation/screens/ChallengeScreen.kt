@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.getValue
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -48,6 +49,15 @@ fun ChallengeScreen(
                 )
                 Text(text = challenge.title, modifier = Modifier.padding(start = 8.dp))
             }
+        }
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = {
+                navController.navigate("addChallenge")
+            }
+        ) {
+            Text("Start a Challenge")
         }
     }
 }
