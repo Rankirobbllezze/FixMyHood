@@ -23,19 +23,20 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.alenga.fixmyhood.presentation.viewmodel.DashboardViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun ForgotPassword(
-    navController: NavController,
-    viewModel: DashboardViewModel = hiltViewModel()
+    onPasswordReset: () -> Unit,
+    onBackToLogin: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
-    var message by remember { mutableStateOf<String?>(null) }
+    var message by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -46,36 +47,38 @@ fun ForgotPassword(
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Enter your email") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text("Email") }
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         Button(onClick = {
-            viewModel.sendPasswordReset(
-                email = email,
-                onSuccess = {
-                    message = "Password reset link sent. Check your email."
-                },
-                onError = {
-                    message = it
-                }
-            )
+            if (email.isNotBlank()) {
+                FirebaseAuth.getInstance()
+                    .sendPasswordResetEmail(email)
+                    .addOnSuccessListener {
+                        message = "Reset link sent to $email"
+                        onPasswordReset()
+                    }
+                    .addOnFailureListener {
+                        message = it.localizedMessage ?: "Failed to send reset email"
+                    }
+            } else {
+                message = "Please enter your email"
+            }
         }) {
             Text("Send Reset Link")
         }
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        message?.let {
-            Text(it, color = MaterialTheme.colorScheme.primary)
+        TextButton(onClick = onBackToLogin) {
+            Text("Back to Login")
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
-
-        TextButton(onClick = { navController.navigate("login") }) {
-            Text("Back to Login")
+        if (message.isNotBlank()) {
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(text = message, color = MaterialTheme.colorScheme.primary)
         }
     }
 }

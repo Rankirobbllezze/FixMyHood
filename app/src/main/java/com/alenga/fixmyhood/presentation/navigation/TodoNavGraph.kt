@@ -28,8 +28,12 @@ fun TOdoNavGraph(navController: NavHostController, startDestination: String) {
             LoginScreen(navController = navController)
         }
         composable("forgot_password") {
-            ForgotPassword(navController = navController)
+            ForgotPassword(
+                onPasswordReset = { /* navigate to login or show confirmation */ },
+                onBackToLogin = { navController.navigate("login") }
+            )
         }
+
 
         composable("dashboard") {
             DashboardScreen(navController = navController)
@@ -37,14 +41,10 @@ fun TOdoNavGraph(navController: NavHostController, startDestination: String) {
         composable("challenges") {
             ChallengeScreen(navController = navController)
         }
-        composable("add_challenge") {
-            val viewModel: AddEcoChallengeViewModel = hiltViewModel()
+        composable("add_Challenge") {
             AddEcoChallengeForm(
                 navController = navController,
-
-                onDismiss = {
-                    navController.popBackStack()
-                }
+                onDismiss = { navController.popBackStack() }
             )
         }
 

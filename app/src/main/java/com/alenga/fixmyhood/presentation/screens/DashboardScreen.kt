@@ -1,5 +1,6 @@
 package com.alenga.fixmyhood.presentation.screens
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -34,7 +37,8 @@ import com.google.firebase.auth.FirebaseAuth
 @Composable
 fun DashboardScreen(
     navController: NavController,
-    viewModel: DashboardViewModel = hiltViewModel()
+    viewModel: DashboardViewModel = hiltViewModel(),
+
 
 ) {
     val ecoTip by viewModel.dailyTip.collectAsState()
@@ -82,9 +86,12 @@ fun DashboardScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                Button(onClick = { navController.navigate("challenges") }) {
-                    Text("Start a Challenge")
+                Button(onClick = {
+                    navController.navigate("add_challenge")
+                }) {
+                    Text("Add New Challenge")
                 }
+
                 Button(onClick = { navController.navigate("education") }) {
                     Text("Be educated")
                 }
@@ -102,26 +109,9 @@ fun DashboardScreen(
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
 
-//            if (showAddDialog.value) {
-//                AlertDialog(
-//                    onDismissRequest = { showAddDialog.value = false },
-//                    title = { Text("Add Challenge") },
-//                    text = {
-//
-//                        AddEcoChallengeForm(
-//                            onSubmit = { title, description, category, tasker, imageUri ->
-//                                viewModel.addEcoChallenge(
-//                                    title, description, category, tasker, imageUri
-//                                )
-//                                showAddDialog.value = false
-//                            },
-//                            onDismiss = { showAddDialog.value = false }
-//                        )
-//                    },
-//                    confirmButton = {},
-//                    dismissButton = {}
-//                )
-//            }
+
+
+
         }
     }
 }
